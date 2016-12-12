@@ -1,11 +1,64 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+</html>
+<head>
+  <title>Take a Quiz</title>
+  <link href="/../stylesheets/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/../javascripts/all.js"></script>
+  <script type="text/javascript">
+  $(function(){
+    $.ajax({
+      url: "http://localhost:3001/quizzes",
+      data: "", //ur data to be sent to server
+      headers: {
+        Accept: "application/json"
+      },
+      type: "GET",
+      success: function (data) {
+        addQuizOption(data);
+      },
+      error: function (x, y, z) {
+        alert(x.responseText +"  " +x.status);
+      }
+    });
+  });
+  </script>
+</head>
+<body>
+
+  <div class="container">
+    <form action="/startQuiz" method="post">
+      <div class="row" style="margin-top:20%;">
+        <div align="center">
+          <h1>Quiz Index</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div align="center">
+          <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Select a quiz <span class="caret"></span>
+            </button>
+            <input type="hidden" name="quizTitle" id="quizTitle" value="" />
+            <input type="hidden" name="selectedQuiz" id="selectedQuiz" value="-1" />
+            <div id="qList">
+            </div>
+            <ul class="dropdown-menu">
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div align="center" style="margin-top:10px;">
+          <input type="submit" name="submit" id="startQuiz" class="btn btn-success disabled" value="Take Quiz" />
+        </div>
+      </div>
+    </form>
+  </div>
+  <div id="footer">
+
+  </div>
+</body>
 </html>

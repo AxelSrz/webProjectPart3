@@ -1,9 +1,9 @@
-var express = require('express');
-var router = express.Router();
-
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
-module.exports = router;
+exports.index = function(req, res){
+  req.session.currentQuiz = "";
+  req.session.questionIndex = -1;
+  req.session.questionList = [];
+  req.session.correctAnswers = 0;
+  req.session.quizTitle = "";
+  res.render('index', { title: 'Quiz Index'});
+};

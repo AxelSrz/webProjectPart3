@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+</html>
+<head>
+  <title>Take a Quiz</title>
+  <link href="/../stylesheets/question.css" rel="stylesheet">
+  <link href="/../stylesheets/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/../javascripts/all.js"></script>
+  <script type="text/javascript">
+  var questionIndex = <%- JSON.stringify(session.questionIndex) %>;
+  var questionList = <%- JSON.stringify(session.questionList) %>;
+  var correctAnswers = <%- JSON.stringify(session.correctAnswers) %>;
+  </script>
+  <script type="text/javascript" src="/../javascripts/quizQuestion.js"></script>
+</head>
+<body>
+    <div class="page-header"><h2 id="headerTitle">Quiz: <%=session.quizTitle%></h2></div>
+    <div class="page-container">
+      <form class="" action="/sendAnswer" method="post" onsubmit="return validateAnswer()">
+        <div class="container-fluid bg-info">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3><span class="label label-warning" id="qid"><%=session.questionIndex+1%></span><text id="questionTitle"></text></h3>
+              </div>
+              <div class="modal-body">
+                <div class="col-xs-3 col-xs-offset-5">
+                  <div id="loadbar" style="display: none;">
+                    <div class="blockG" id="rotateG_01"></div>
+                    <div class="blockG" id="rotateG_02"></div>
+                    <div class="blockG" id="rotateG_03"></div>
+                    <div class="blockG" id="rotateG_04"></div>
+                    <div class="blockG" id="rotateG_05"></div>
+                    <div class="blockG" id="rotateG_06"></div>
+                    <div class="blockG" id="rotateG_07"></div>
+                    <div class="blockG" id="rotateG_08"></div>
+                  </div>
+                </div>
+
+                <div class="quiz" id="quiz" data-toggle="buttons">
+                </div>
+              </div>
+              <div class="modal-footer text-muted">
+                <span id="answer"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <%- include layouts/footer.ejs %>
