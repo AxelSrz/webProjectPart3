@@ -1,8 +1,8 @@
 
 
 exports.start = function(req, res){
+  var sess = req.session;
   if(req.session.currentQuiz == ''){
-    var sess = req.session;
     sess.currentQuiz = req.body.selectedQuiz;
     sess.questionIndex = 0;
     sess.questionList = req.body.quizQuestions;
